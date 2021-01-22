@@ -2,6 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 import { Button } from 'react-native-elements'
 import * as wechat from 'react-native-wechat'
+import { axiosPost } from '../../../utils/axios'
 
 export default class Wechat extends React.Component {
 
@@ -20,7 +21,17 @@ export default class Wechat extends React.Component {
     wechat.sendAuthRequest('snsapi_userinfo')
       .then(r => {
         console.log(r)
-        alert(r)
+        if (r.code) {
+          axiosPost('v1/app/loginByCode', {
+            code: r.code
+          })
+            .then(r => {
+              console.log(r)
+            })
+            .catch(e => {
+              console.log(e)
+            })
+        }
       })
       .catch(e => {
         console.log(e)
