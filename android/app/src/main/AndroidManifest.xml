@@ -2,6 +2,9 @@
   package="com.bz.km">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <meta-data
+      android:name="com.amap.api.v2.apikey"
+      android:value="e2d3c1019d3ae32fcd567917bd3227f2" />
 
     <application
       android:name=".MainApplication"

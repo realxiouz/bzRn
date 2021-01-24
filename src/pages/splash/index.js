@@ -1,6 +1,8 @@
 import React from "react";
 import {View, Text, StyleSheet, StatusBar, Image } from "react-native";
-import { rpx } from "../../utils/size";
+import { set } from "react-native-reanimated";
+import { rpx } from "../../utils/size"
+import { getObj, setObj } from '../../utils/storage'
 
 class SplashPage extends React.Component {
 
@@ -24,9 +26,10 @@ class SplashPage extends React.Component {
     }, 1000)
   }
 
-  goHome= _ => {
+  goHome = async _ => {
+    let user = await getObj('user')
     this.state.tId && clearInterval(this.state.tId)
-    this.props.navigation.replace('Home')
+    this.props.navigation.replace( user.token ? 'Home' : 'Login')
   }
 
   render() {

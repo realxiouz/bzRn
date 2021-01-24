@@ -9,6 +9,7 @@ import DebuggerWechatPage from "./pages/debugger/wechat/index"
 import DebuggerSvgPage from "./pages/debugger/svg/index"
 
 import NewsHomePage from './pages/news/home/index'
+import LoginPage from "./pages/auth/login"
 
 // import MapPage from "../pages/debug/map";
 const Stack = createStackNavigator()
@@ -29,6 +30,7 @@ export default function Route() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Splash" headerMode="none">
         <Stack.Screen name="Splash" component={SplashPage} ></Stack.Screen>
+        <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="DebuggerWechat" component={DebuggerWechatPage}></Stack.Screen>
         <Stack.Screen name="DebuggerSvg" component={DebuggerSvgPage}></Stack.Screen>
         {/* <Stack.Screen name="Map" component={MapPage}></Stack.Screen> */}

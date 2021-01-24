@@ -9,13 +9,13 @@ export default class NewsHome extends React.Component {
   render() {
     return (
       <View>
-        <TabView
+        {/* <TabView
           // renderTabBar={}
           navigationState={{ index, routes }}
           renderScene={renderScene}
           onIndexChange={setIndex}
           initialLayout={initialLayout}
-        />
+        /> */}
       </View>
     )
   }
