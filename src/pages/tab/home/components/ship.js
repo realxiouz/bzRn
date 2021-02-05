@@ -66,7 +66,7 @@ export default class Ship extends React.Component {
 
     return isLoaded ? 
             <View style={{flex:1, width: rpx(750)}}>
-              <MapView style={{flex: 1}} />
+              {/* <MapView style={{flex: 1}} /> */}
               
               <Card
                 containerStyle={{

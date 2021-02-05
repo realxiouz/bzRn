@@ -32,7 +32,7 @@ instance.interceptors.response.use(r => {
   let { status, data} = r
   switch(status) {
     case 200:
-      if (data.code == 1) {
+      if (data.code == 1 || data.code == 1000) {
         return data
       } else {
         ToastAndroid.show(data.msg, 2000)

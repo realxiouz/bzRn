@@ -5,7 +5,9 @@ import { Input, CheckBox, Button } from 'react-native-elements'
 import { axiosPost } from '../../../utils/axios'
 import { setObj, getObj } from '../../../utils/storage'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { inject } from 'mobx-react'
 
+@inject('rootStore')
 export default class LoginPage extends React.Component {
 
   state = {
@@ -44,6 +46,7 @@ export default class LoginPage extends React.Component {
     axiosPost('user/accountLogin',d)
       .then(r => {
         setObj('user', r.data.userinfo)
+        this.props.rootStore.user.setToken(r.data.userinfo.token)
       })
       .catch(e => {
         console.log(e)

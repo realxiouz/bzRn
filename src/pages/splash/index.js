@@ -1,9 +1,10 @@
+import { inject } from "mobx-react";
 import React from "react";
 import {View, Text, StyleSheet, StatusBar, Image } from "react-native";
-import { set } from "react-native-reanimated";
 import { rpx } from "../../utils/size"
 import { getObj, setObj } from '../../utils/storage'
 
+@inject('rootStore')
 class SplashPage extends React.Component {
 
   state = {
@@ -11,7 +12,8 @@ class SplashPage extends React.Component {
     tId: null,
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    
     let countDown = 5
     this.state.tId = setInterval(_ => {
       countDown--
@@ -24,12 +26,18 @@ class SplashPage extends React.Component {
         this.goHome()
       }
     }, 1000)
+
+    getObj('user').then(r => {
+      r.token && this.props.rootStore.user.setToken(r.token)
+    })
   }
 
   goHome = async _ => {
-    let user = await getObj('user')
+    // let user = await getObj('user')
+    let { token } = this.props.rootStore.user 
+    let path = token ? 'Home' : 'Login'
     this.state.tId && clearInterval(this.state.tId)
-    this.props.navigation.replace( user.token ? 'Home' : 'Login')
+    this.props.navigation.replace( path )
   }
 
   render() {
